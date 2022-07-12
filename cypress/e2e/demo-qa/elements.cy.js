@@ -41,7 +41,7 @@ context("Elements Page", () => {
       // Click the "+"/expand button
       CheckBoxPage.expandAllBtn.should("be.visible").click();
       // Click Notes, React, Angular, General, Excel File.doc
-      let nodesToClick = ["Notes", "React", "Angular", "General", "Excel File.doc"]
+      const nodesToClick = ["Notes", "React", "Angular", "General", "Excel File.doc"]
       nodesToClick.forEach(label => {
         CheckBoxPage.node(label).should("be.visible").click();
       })
