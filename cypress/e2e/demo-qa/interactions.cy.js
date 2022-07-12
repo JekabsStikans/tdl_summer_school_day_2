@@ -2,7 +2,6 @@
 import SelectablePage from "../../pageObjects/selectablePage";
 
 
-
 context("Interactions", () => {
   context("Selectable", () => {
     // Create Selectable page object
