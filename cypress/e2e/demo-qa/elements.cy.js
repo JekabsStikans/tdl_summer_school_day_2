@@ -1,6 +1,7 @@
 import CheckBoxPage from "../../pageObjects/checkBoxPage";
 import RadioButtonsPage from "../../pageObjects/radioButtonsPage";
 import TextBoxPage from "../../pageObjects/textBoxPage";
+import WebTablesPage from "../../pageObjects/webTablesPage";
 
 context("Elements Page", () => {
   context("Text box scenarios", () => {
@@ -88,22 +89,42 @@ context("Elements Page", () => {
 
   context("Web tables scenarios", () => {
     // Create WebTables page object
+    beforeEach(() => {
+      WebTablesPage.visit();
+    });
+
     // Create scenario 1:
+    it("Making an entry and checking the table", () => {
     // Click add record button
+    WebTablesPage.addRecordBtn.should("be.visible").click();
     // fill in the necessary information
+    WebTablesPage.firstNameInput.should("be.visible").type("Jēkabs");
+    WebTablesPage.lastNameInput.should("be.visible").type("Stikāns");
+    WebTablesPage.userEmailInput.should("be.visible").type("fake@mail.com");
+    WebTablesPage.ageInput.should("be.visible").type("22");
+    WebTablesPage.salaryInput.should("be.visible").type("999");
+    WebTablesPage.departmentInput.should("be.visible").type("Software development");
     // click submit button
+    WebTablesPage.submitFormBtn.should("be.visible").click();
     // search for the user based on previously added information
     // validate tha the user is visible
+    });
 
     // Create Scenario 2:
-    // Delete all table rows
-    // Validate that we see text - No rows found
+    // it("Deleting all table entries", () => {
+    // // Delete all table rows
+    // // Validate that we see text - No rows found
+    // });
   });
 
 
   context("Buttons scenarios", () => {
-    // Create buttons clicking scenario
     // Create Buttons page
+    beforeEach(() => {
+      RadioButtonsPage.visit();
+    });
+
+    // Create buttons clicking scenario
     // Check documentation https://docs.cypress.io/api/commands/and for how to perform different types of clicking
     // Click Double click button
     // Validate the double click message
