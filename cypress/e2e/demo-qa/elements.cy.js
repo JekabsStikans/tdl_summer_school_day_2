@@ -6,11 +6,20 @@ context("Elements Page", () => {
       TextBoxPage.visit();
     });
 
-    // Create texbox scenario
-    // fill in textboxes with necessary information
-    // validate the paragraphs
+    // Create textbox scenario
     it("Filling in Text Boxes", () => {
-      // add the necessary steps
+      // fill in textboxes with necessary information
+      TextBoxPage.fullNameInput.should("be.visible").type("Jēkabs Stikāns");
+      TextBoxPage.emailInput.should("be.visible").type("fake@mail.com");
+      TextBoxPage.currentAddressInput.should("be.visible").type("Random house 92");
+      TextBoxPage.permanentAddressInput.should("be.visible").type("That other place 5");
+      TextBoxPage.submitBtn.should("be.visible").click();
+
+      // validate the paragraphs
+      TextBoxPage.fullNameText.should("have.text", "Name:Jēkabs Stikāns");
+      TextBoxPage.emailText.should("have.text", "Email:fake@mail.com");
+      TextBoxPage.currentAddressText.should("have.text", "Current Address :Random house 92 ");
+      TextBoxPage.permanentAddressText.should("have.text", "Permananet Address :That other place 5");
     });
   });
 
