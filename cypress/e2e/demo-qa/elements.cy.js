@@ -1,4 +1,5 @@
 import CheckBoxPage from "../../pageObjects/checkBoxPage";
+import RadioButtonsPage from "../../pageObjects/radioButtonsPage";
 import TextBoxPage from "../../pageObjects/textBoxPage";
 
 context("Elements Page", () => {
@@ -24,12 +25,13 @@ context("Elements Page", () => {
     });
   });
 
+
   context("Check box scenarios", () => {
+    // Create CheckBoxPage page object
     beforeEach(() => {
       CheckBoxPage.visit();
     });
 
-    // Create CheckBoxPage page object
     // Create checkbox scenario 1:
     it("Checking many boxes", () => {
       // Click the "+"/expand button
@@ -59,15 +61,30 @@ context("Elements Page", () => {
     });
   });
 
-  context("Radio button scenarios", () => {
+
+  context("Radio buttons scenario", () => {
     // Create RadioButtons page object
+    beforeEach(() => {
+      RadioButtonsPage.visit();
+    });
+
     // Scenario 1:
+    it("Buttons click and check", () => {
     // Click yesButton
+    RadioButtonsPage.yesRadio.should("exist").click();
     // validate the message
+    RadioButtonsPage.selectionMessage.should("be.visible").should("have.text", "Yes")
+
     // click impressiveButton
+    RadioButtonsPage.impressiveRadio.should("exist").click();
     // validate the message
+    RadioButtonsPage.selectionMessage.should("be.visible").should("have.text", "Impressive")
+
     // noButton - validate that the button exists but is disabled
+    RadioButtonsPage.noRadio.should("exist").find(".disabled").should("exist");
+    });
   });
+
 
   context("Web tables scenarios", () => {
     // Create WebTables page object
@@ -82,6 +99,7 @@ context("Elements Page", () => {
     // Delete all table rows
     // Validate that we see text - No rows found
   });
+
 
   context("Buttons scenarios", () => {
     // Create buttons clicking scenario

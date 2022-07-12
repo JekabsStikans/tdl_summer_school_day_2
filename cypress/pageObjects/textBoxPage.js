@@ -40,10 +40,6 @@ class TextBoxPage extends BasePage {
   static get permanentAddressText() {
     return cy.get(".border > #permanentAddress");
   }
-
-  static get xxx() {
-    return cy.get("xxx");
-  }
 }
 
 export default TextBoxPage;
