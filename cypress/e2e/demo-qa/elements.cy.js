@@ -1,3 +1,4 @@
+import CheckBoxPage from "../../pageObjects/checkBoxPage";
 import TextBoxPage from "../../pageObjects/textBoxPage";
 
 context("Elements Page", () => {
@@ -24,16 +25,38 @@ context("Elements Page", () => {
   });
 
   context("Check box scenarios", () => {
+    beforeEach(() => {
+      CheckBoxPage.visit();
+    });
+
     // Create CheckBoxPage page object
     // Create checkbox scenario 1:
-    // Click the "+"/expand button
-    // Click Notes, React, Angular, General, Excel File.doc
-    // Validate the clicked checkboxes
+    it("Checking many boxes", () => {
+      // Click the "+"/expand button
+      CheckBoxPage.expandAllBtn.should("be.visible").click();
+      // Click Notes, React, Angular, General, Excel File.doc
+      let nodesToClick = ["Notes", "React", "Angular", "General", "Excel File.doc"]
+      nodesToClick.forEach(label => {
+        CheckBoxPage.findNode(label).should("be.visible").click();
+      })
+      // Validate the clicked checkboxes
+      CheckBoxPage.nodeCheckbox("Veu").find(".rct-icon-uncheck").should("exist");
+      nodesToClick.forEach(label => {
+        CheckBoxPage.nodeCheckbox(label).find(".rct-icon-check").should("exist");
+      })
+
+    });
 
     // Create checkbox scenario 2:
-    // Click expand button
-    // Click Office
-    // Validate the checked checkboxes
+    it("Checking one box", () => {
+      // Click expand button
+      CheckBoxPage.expandAllBtn.should("be.visible").click();
+      // Click Office
+      CheckBoxPage.findNode("Office").should("be.visible").click();
+      // Validate the checked checkboxes
+      CheckBoxPage.nodeCheckbox("Office").find(".rct-icon-check").should("exist");
+
+    });
   });
 
   context("Radio button scenarios", () => {
