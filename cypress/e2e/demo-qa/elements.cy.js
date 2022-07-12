@@ -107,14 +107,20 @@ context("Elements Page", () => {
     // click submit button
     WebTablesPage.submitFormBtn.should("be.visible").click();
     // search for the user based on previously added information
-    // validate tha the user is visible
+    // validate that the user is visible
+    cy.contains("Jēkabs").should("be.visible");
+
     });
 
     // Create Scenario 2:
-    // it("Deleting all table entries", () => {
-    // // Delete all table rows
-    // // Validate that we see text - No rows found
-    // });
+    it("Deleting all table entries", () => {
+    // Delete all table rows
+    WebTablesPage.deleteRecordBtn(3).should("be.visible").click();
+    WebTablesPage.deleteRecordBtn(2).should("be.visible").click();
+    WebTablesPage.deleteRecordBtn(1).should("be.visible").click();
+    // Validate that we see text - No rows found
+    cy.get(".rt-noData").should("have.text", "No rows found");
+    });
   });
 
 

@@ -36,6 +36,10 @@ class WebTablesPage extends BasePage {
   static get submitFormBtn() {
     return cy.get("#submit");
   }
+
+  static deleteRecordBtn(ID) {
+      return cy.get("#delete-record-"+ID.toString());
+  }
 }
 
 export default WebTablesPage;
