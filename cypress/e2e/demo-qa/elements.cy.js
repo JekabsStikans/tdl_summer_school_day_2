@@ -1,3 +1,4 @@
+import ButtonsPage from "../../pageObjects/buttonsPage";
 import CheckBoxPage from "../../pageObjects/checkBoxPage";
 import RadioButtonsPage from "../../pageObjects/radioButtonsPage";
 import TextBoxPage from "../../pageObjects/textBoxPage";
@@ -70,7 +71,7 @@ context("Elements Page", () => {
     });
 
     // Scenario 1:
-    it("Buttons click and check", () => {
+    it("Button clicks and checks", () => {
     // Click yesButton
     RadioButtonsPage.yesRadio.should("exist").click();
     // validate the message
@@ -124,19 +125,29 @@ context("Elements Page", () => {
   });
 
 
-  context("Buttons scenarios", () => {
-    // Create Buttons page
+  context("Buttons scenario", () => {
+    // Create Buttons page object
     beforeEach(() => {
-      RadioButtonsPage.visit();
+      ButtonsPage.visit();
     });
 
     // Create buttons clicking scenario
+    it("Button clicks and checks", () => {
     // Check documentation https://docs.cypress.io/api/commands/and for how to perform different types of clicking
     // Click Double click button
+    ButtonsPage.doubleClickBtn.should("be.visible").dblclick();
     // Validate the double click message
+    cy.get("#doubleClickMessage").should("have.text", "You have done a double click")
+
     // Click rightclick button
+    ButtonsPage.rightClickBtn.should("be.visible").rightclick();
     // Validate the right click message
+    cy.get("#rightClickMessage").should("have.text", "You have done a right click")
+
     // Do dynamic click
+    ButtonsPage.dynamicClickBtn.should("be.visible").click();
     // Validate dynamic click message
+    cy.get("#dynamicClickMessage").should("have.text", "You have done a dynamic click")
+    });
   });
 });
