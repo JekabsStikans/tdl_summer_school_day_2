@@ -5,20 +5,12 @@ class ProgressBarPage extends BasePage {
     return "/progress-bar";
   }
 
-  static get listTab() {
-    return cy.get("#demo-tab-list");
+  static get startStopButton() {
+    return cy.get("#startStopButton");
   }
 
-  static get gridTab() {
-    return cy.get("#demo-tab-grid");
-  }
-
-  static get listContainer() {
-    return cy.get("#verticalListContainer");
-  }
-
-  static get gridContainer() {
-    return cy.get("#gridContainer");
+  static get progressBar() {
+    return cy.get(".progress-bar");
   }
 }
 

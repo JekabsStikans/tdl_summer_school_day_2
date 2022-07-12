@@ -28,19 +28,38 @@ context("Widgets", () => {
   });
 
 
-  // context("Progress bar", () => {
-  //   // 2. https://demoqa.com/progress-bar
-  //   beforeEach(() => {
-  //     ProgressBarPage.visit();
-  //   });
+  context("Progress bar", () => {
+    // 2. https://demoqa.com/progress-bar
+      ProgressBarPage.visit();
+    });
 
-  //   it("Start, stop, check", () => {
-  //     // - click start
-  //     // - stop at 25% - validate that the bar value is 25%
-  //     // - click start
-  //     // - stop at 75% - validate that the bar value is 75%
-  //     // - click start
-  //     // - stop at 99% - validate that the bar value is 99%
-  //   }); 
-  // });
+    it.only("Start, stop, check", () => {
+      // - click start
+      ProgressBarPage.startStopButton.should("be.visible").click();
+      // - stop at 25% - validate that the bar value is 25%
+      ProgressBarPage.progressBar.then(($bar) => {
+        cy.wrap($bar).invoke("attr", "aria-valuenow").should("contain", "25").then(()=>{
+          ProgressBarPage.startStopButton.should("be.visible").click();
+        })
+      });
+
+      // - click start
+      ProgressBarPage.startStopButton.should("be.visible").click();
+      // - stop at 75% - validate that the bar value is 75%
+      ProgressBarPage.progressBar.then(($bar) => {
+        cy.wrap($bar).invoke("attr", "aria-valuenow").should("contain", "75").then(()=>{
+          ProgressBarPage.startStopButton.should("be.visible").click();
+        })
+      });
+
+      // - click start
+      ProgressBarPage.startStopButton.should("be.visible").click();
+      // - stop at 99% - validate that the bar value is 99%
+      ProgressBarPage.progressBar.then(($bar) => {
+        cy.wrap($bar).invoke("attr", "aria-valuenow").should("contain", "99").then(()=>{
+          ProgressBarPage.startStopButton.click();
+        })
+      });
+    }); 
+  });
 });
