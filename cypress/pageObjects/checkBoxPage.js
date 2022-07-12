@@ -13,12 +13,12 @@ class CheckBoxPage extends BasePage {
     return cy.get(".rct-option-collapse-all");
   }
 
-  static findNode(label) {
-    return cy.contains(label);
+  static node(label) {
+    return cy.get("#tree-node").contains(label);
   }
 
   static nodeCheckbox(label) {
-    return cy.contains(label).parent().find(".rct-checkbox");
+    return this.node(label).parent().find(".rct-checkbox");
   }
 }
 

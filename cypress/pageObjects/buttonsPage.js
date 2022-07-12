@@ -17,8 +17,16 @@ class ButtonsPage extends BasePage {
     return cy.get(".btn-primary").not("#doubleClickBtn").not("#rightClickBtn");
   }
 
-  static get selectionMessage() {
-    return cy.contains("You have selected ").find(".text-success");
+  static get doubleClickMessage() {
+    return cy.get("#doubleClickMessage");
+  }
+
+  static get rightClickMessage() {
+    return cy.get("#rightClickMessage");
+  }
+
+  static get dynamicClickMessage() {
+    return cy.get("#dynamicClickMessage");
   }
 }
 

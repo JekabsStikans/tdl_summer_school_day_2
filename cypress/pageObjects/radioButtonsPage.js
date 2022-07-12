@@ -18,7 +18,7 @@ class RadioButtonsPage extends BasePage {
   }
 
   static get selectionMessage() {
-    return cy.contains("You have selected ").find(".text-success");
+    return cy.get(".text-success");
   }
 }
 

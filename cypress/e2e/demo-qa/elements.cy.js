@@ -5,6 +5,7 @@ import TextBoxPage from "../../pageObjects/textBoxPage";
 import WebTablesPage from "../../pageObjects/webTablesPage";
 
 context("Elements Page", () => {
+  /* ------------------------------------------- TEXT BOX ------------------------------------------------------ */
   context("Text box scenarios", () => {
     beforeEach(() => {
       TextBoxPage.visit();
@@ -28,6 +29,7 @@ context("Elements Page", () => {
   });
 
 
+  /* ------------------------------------------- CHECK BOX --------------------------------------------------------- */
   context("Check box scenarios", () => {
     // Create CheckBoxPage page object
     beforeEach(() => {
@@ -41,22 +43,22 @@ context("Elements Page", () => {
       // Click Notes, React, Angular, General, Excel File.doc
       let nodesToClick = ["Notes", "React", "Angular", "General", "Excel File.doc"]
       nodesToClick.forEach(label => {
-        CheckBoxPage.findNode(label).should("be.visible").click();
+        CheckBoxPage.node(label).should("be.visible").click();
       })
       // Validate the clicked checkboxes
       CheckBoxPage.nodeCheckbox("Veu").find(".rct-icon-uncheck").should("exist");
       nodesToClick.forEach(label => {
         CheckBoxPage.nodeCheckbox(label).find(".rct-icon-check").should("exist");
       })
-
     });
+
 
     // Create checkbox scenario 2:
     it("Checking one box", () => {
       // Click expand button
       CheckBoxPage.expandAllBtn.should("be.visible").click();
       // Click Office
-      CheckBoxPage.findNode("Office").should("be.visible").click();
+      CheckBoxPage.node("Office").should("be.visible").click();
       // Validate the checked checkboxes
       CheckBoxPage.nodeCheckbox("Office").find(".rct-icon-check").should("exist");
 
@@ -64,6 +66,7 @@ context("Elements Page", () => {
   });
 
 
+  /* ------------------------------------------- RADIO BUTTON ------------------------------------------------------ */
   context("Radio buttons scenario", () => {
     // Create RadioButtons page object
     beforeEach(() => {
@@ -88,11 +91,13 @@ context("Elements Page", () => {
   });
 
 
+  /* ------------------------------------------- WEB TABLES -------------------------------------------------------- */
   context("Web tables scenarios", () => {
     // Create WebTables page object
     beforeEach(() => {
       WebTablesPage.visit();
     });
+
 
     // Create scenario 1:
     it("Making an entry and checking the table", () => {
@@ -107,11 +112,12 @@ context("Elements Page", () => {
     WebTablesPage.departmentInput.should("be.visible").type("Software development");
     // click submit button
     WebTablesPage.submitFormBtn.should("be.visible").click();
+
     // search for the user based on previously added information
     // validate that the user is visible
-    cy.contains("Jēkabs").should("be.visible");
-
+    WebTablesPage.table.contains("Jēkabs").should("be.visible");
     });
+
 
     // Create Scenario 2:
     it("Deleting all table entries", () => {
@@ -120,11 +126,12 @@ context("Elements Page", () => {
     WebTablesPage.deleteRecordBtn(2).should("be.visible").click();
     WebTablesPage.deleteRecordBtn(1).should("be.visible").click();
     // Validate that we see text - No rows found
-    cy.get(".rt-noData").should("have.text", "No rows found");
+    WebTablesPage.noDataMsg.should("have.text", "No rows found");
     });
   });
 
 
+  /* ------------------------------------------- BUTTONS ----------------------------------------------------------- */
   context("Buttons scenario", () => {
     // Create Buttons page object
     beforeEach(() => {
@@ -137,17 +144,17 @@ context("Elements Page", () => {
     // Click Double click button
     ButtonsPage.doubleClickBtn.should("be.visible").dblclick();
     // Validate the double click message
-    cy.get("#doubleClickMessage").should("have.text", "You have done a double click")
+    ButtonsPage.doubleClickMessage.should("have.text", "You have done a double click");
 
     // Click rightclick button
     ButtonsPage.rightClickBtn.should("be.visible").rightclick();
     // Validate the right click message
-    cy.get("#rightClickMessage").should("have.text", "You have done a right click")
+    ButtonsPage.rightClickMessage.should("have.text", "You have done a right click");
 
     // Do dynamic click
     ButtonsPage.dynamicClickBtn.should("be.visible").click();
     // Validate dynamic click message
-    cy.get("#dynamicClickMessage").should("have.text", "You have done a dynamic click")
+    ButtonsPage.dynamicClickMessage.should("have.text", "You have done a dynamic click");
     });
   });
 });

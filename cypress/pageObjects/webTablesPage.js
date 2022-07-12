@@ -40,6 +40,14 @@ class WebTablesPage extends BasePage {
   static deleteRecordBtn(ID) {
       return cy.get("#delete-record-"+ID.toString());
   }
+
+  static get table() {
+    return cy.get(".rt-table");
+  }
+
+  static get noDataMsg() {
+    return cy.get(".rt-noData");
+  }
 }
 
 export default WebTablesPage;
