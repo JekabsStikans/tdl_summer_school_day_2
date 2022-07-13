@@ -30,6 +30,7 @@ context("Widgets", () => {
 
   context("Progress bar", () => {
     // 2. https://demoqa.com/progress-bar
+    beforeEach(() => {
       ProgressBarPage.visit();
     });
 
